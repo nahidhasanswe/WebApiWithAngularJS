@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+	<meta charset="utf-8" />
+    <script src="../../Scripts/angular.min.js"></script>
+</head>
+<body ng-controller="StudentsController">
+
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <td>Student Id</td>
+            <td>Student Name</td>
+            <td>Department</td>
+        </tr>
+        <tr ng-repeat="student in result">
+            <td>{{student.Id}}</td>
+            <td>{{student.Name}}</td>
+            <td>{{student.Department}}</td>
+        </tr>
+    </table>
+
+
+    <script type="text/javascript">
+        var Student = angular.module('Student', []);
+        Student.controller('StudentsController', function ($scope, $http) {
+            $http.get('http://localhost:62714/api/Students').success(function (response) {
+                $scope.result = response;
+            });
+        });
+    </script>
+</body>
+</html>
